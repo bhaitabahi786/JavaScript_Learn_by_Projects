@@ -56,12 +56,6 @@ const locations = [
         text: "You are fighting a monster."
     },
     {
-        name: "kill monster",
-        "button text": ["Go to town square", "Go to town square", "Go to town square"],
-        "button functions": [goTown, goTown, easterEgg],
-        text: "The monster screams Arg! as it dies. You gain experience points and find gold."
-    },
-    {
         name: "lose",
         "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
         "button functions": [restart, restart, restart],
@@ -78,6 +72,24 @@ const locations = [
         "button text": ["2", "8", "Go to town square?"],
         "button functions": [pickTwo, pickEight, goTown],
         text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
+    },
+    {
+        name: "kill monster",
+        "button text": ["Go to town square", "Go to town square", "Go to town square"],
+        "button functions": [goTown, goTown, easterEgg],
+        text: "The monster screams Arg! as it dies. You gain experience points and find gold."
+    },
+    {
+        name: "kill monster",
+        "button text": ["Go to town square", "Go to town square", "Go to town square"],
+        "button functions": [goTown, easterEgg, goTown],
+        text: "The monster screams Arg! as it dies. You gain experience points and find gold."
+    },
+    {
+        name: "kill monster",
+        "button text": ["Go to town square", "Go to town square", "Go to town square"],
+        "button functions": [easterEgg, goTown, goTown],
+        text: "The monster screams Arg! as it dies. You gain experience points and find gold."
     },
 ];
 
@@ -264,20 +276,26 @@ function defeatMonster() {
     xp += monsters[fighting].level;
     goldText.innerText = gold;
     xpText.innerText = xp;
-    update(locations[4]);
+
+    // generate random for easter egg function
+    let min = 7;
+    let max = 9;
+    let random = Math.floor(Math.random() * (max - min + 1)) + min;
+    console.log(random);
+    update(locations[random]);
 
 }
 
 function lose() {
-    update(locations[5]);
+    update(locations[4]);
 }
 
 function easterEgg(){
-    update(locations[7]);
+    update(locations[6]);
 }
 
 function winGame(){
-  update(locations[6]);
+  update(locations[5]);
 }
 
 function restart() {
